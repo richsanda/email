@@ -19,6 +19,7 @@ public interface EmailOperations {
     @RequestMapping(value = "/keys", method = RequestMethod.GET, produces = "application/json")
     List<String> allKeys();
 
+    @RequestMapping(value = "/email", method = RequestMethod.POST)
     void addEmail(DtoEmail email);
 
     @RequestMapping(value = "/email/{key}", method = RequestMethod.GET, produces = "application/json")

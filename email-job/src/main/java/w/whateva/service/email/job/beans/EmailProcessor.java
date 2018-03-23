@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class EmailProcessor implements ItemProcessor<DtoEmail, DtoEmail> {
 
     public DtoEmail process(DtoEmail dtoEmail) {
-        dtoEmail.setTos(toEmailAddresses(dtoEmail.getTo()));
+        dtoEmail.setTos(toSimpleAddresses(dtoEmail.getTo()));
         return dtoEmail;
     }
 

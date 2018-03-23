@@ -1,12 +1,18 @@
 package w.whateva.service.email.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import w.whateva.service.email.api.adapter.LocalDateTimeXmlAdapter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
+@XmlRootElement(name = "Email")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtoEmail {
 
     private String id;
@@ -19,16 +25,20 @@ public class DtoEmail {
         this.id = id;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd'T'hh:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @XmlElement(name = "Sent")
+    @XmlJavaTypeAdapter(type = LocalDateTime.class, value = LocalDateTimeXmlAdapter.class)
     private LocalDateTime sent;
+    @XmlElement(name = "From")
     private String from;
+    @XmlElement(name = "To")
     private String to;
     private Set<String> tos;
+    @XmlElement(name = "Subject")
     private String subject;
+    @XmlElement(name = "Body")
     private String body;
 
-    @JsonFormat(pattern="yyyy-MM-dd'T'hh:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     public LocalDateTime getSent() {
         return sent;
