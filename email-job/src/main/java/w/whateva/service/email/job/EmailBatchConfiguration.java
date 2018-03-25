@@ -7,6 +7,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -26,6 +27,9 @@ public class EmailBatchConfiguration extends DefaultBatchConfigurer {
     private final EmailOperations emailService;
     private final PersonService personService;
 
+    @Value("${email.address.parser.type}")
+    private String emailAddressParserType;
+
     @Autowired
     public EmailBatchConfiguration(EmailOperations emailService, PersonService personService) {
         this.emailService = emailService;
@@ -41,7 +45,7 @@ public class EmailBatchConfiguration extends DefaultBatchConfigurer {
     @Bean
     @StepScope
     ItemProcessor<DtoEmail, DtoEmail> emailProcessor() {
-        return new EmailProcessor();
+        return new EmailProcessor(emailAddressParserType);
     }
 
     @Bean

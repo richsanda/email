@@ -12,8 +12,25 @@ import java.util.stream.Collectors;
 
 public class EmailProcessor implements ItemProcessor<DtoEmail, DtoEmail> {
 
+    private final String emailAddressParserType;
+
+    public EmailProcessor(String emailAddressParserType) {
+        this.emailAddressParserType = emailAddressParserType;
+    }
+
     public DtoEmail process(DtoEmail dtoEmail) {
-        dtoEmail.setTos(toSimpleAddresses(dtoEmail.getTo()));
+
+        switch (emailAddressParserType.toLowerCase()) {
+            case "simple":
+                dtoEmail.setTos(toSimpleAddresses(dtoEmail.getTo()));
+                break;
+            case "internet":
+                dtoEmail.setTos(toEmailAddresses(dtoEmail.getTo()));
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown email address parser type");
+        }
+
         return dtoEmail;
     }
 
