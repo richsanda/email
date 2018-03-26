@@ -30,6 +30,9 @@ public class EmailBatchConfiguration extends DefaultBatchConfigurer {
     @Value("${email.address.parser.type}")
     private String emailAddressParserType;
 
+    @Value("${email.to.default}")
+    private String emailToDefault;
+
     @Autowired
     public EmailBatchConfiguration(EmailOperations emailService, PersonService personService) {
         this.emailService = emailService;
@@ -45,7 +48,7 @@ public class EmailBatchConfiguration extends DefaultBatchConfigurer {
     @Bean
     @StepScope
     ItemProcessor<DtoEmail, DtoEmail> emailProcessor() {
-        return new EmailProcessor(emailAddressParserType);
+        return new EmailProcessor(emailAddressParserType, emailToDefault);
     }
 
     @Bean

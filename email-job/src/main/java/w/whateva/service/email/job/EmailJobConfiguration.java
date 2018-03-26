@@ -19,6 +19,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import w.whateva.service.email.api.dto.DtoEmail;
+import w.whateva.service.email.api.dto.DtoGroupMessage;
 import w.whateva.service.email.api.dto.DtoPerson;
 
 import java.io.IOException;
@@ -35,6 +36,9 @@ public class EmailJobConfiguration {
 
     @Value("${person.xml.file}")
     private String personXmlFile;
+
+    @Value("${email.xml.root.name}")
+    private String fragmentRootElementName;
 
     @Autowired
     public EmailJobConfiguration(JobBuilderFactory jobs, StepBuilderFactory steps, EmailBatchConfiguration config) {
@@ -87,7 +91,7 @@ public class EmailJobConfiguration {
     @StepScope
     public ResourceAwareItemReaderItemStream<DtoEmail> oneEmailReader() {
         StaxEventItemReader<DtoEmail> reader = new StaxEventItemReader<>();
-        reader.setFragmentRootElementName("Email");
+        reader.setFragmentRootElementName(fragmentRootElementName);
         //Resource resource = resourceLoader.getResource("file:/Users/rich/Downloads/games/2005.1.1.xml");
         //reader.setResource(resource);
         reader.setUnmarshaller(emailUnmarshaller());
@@ -97,7 +101,7 @@ public class EmailJobConfiguration {
     @Bean
     public Jaxb2Marshaller emailUnmarshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setClassesToBeBound(DtoEmail.class, DtoPerson.class);
+        marshaller.setClassesToBeBound(DtoEmail.class, DtoPerson.class, DtoGroupMessage.class);
         marshaller.setCheckForXmlRootElement(true);
         return marshaller;
     }
