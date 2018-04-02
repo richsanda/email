@@ -11,5 +11,5 @@ public interface PersonDao {
 
     List<EmailCount> getEmailCount();
 
-    public List<Email> getEmails(Set<String> names, LocalDateTime after, LocalDateTime before);
+    List<Email> getEmails(Set<String> names, LocalDateTime after, LocalDateTime before);
 }

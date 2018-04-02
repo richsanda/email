@@ -48,7 +48,7 @@ public class EmailServiceImpl implements EmailOperations {
 
     @Override
     public DtoEmail readEmail(String key) {
-        Email email = emailRepository.findOne(key);
+        Email email = emailRepository.findById(key).orElse(null);
         if (null == email) return null;
         DtoEmail dtoEmail = new DtoEmail();
         BeanUtils.copyProperties(email, dtoEmail);

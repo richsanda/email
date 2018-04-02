@@ -26,7 +26,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public DtoPerson readPerson(String key) {
-        Person person = personRepository.findOne(key);
+        Person person = personRepository.findById(key).orElse(null);
         if (null == person) return null;
         DtoPerson dtoPerson = new DtoPerson();
         BeanUtils.copyProperties(person, dtoPerson);
