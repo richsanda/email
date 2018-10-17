@@ -12,9 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>1.5.10.RELEASE</spring.boot.version>
-        <spring.data.version>2.0.5.RELEASE</spring.data.version>
-        <spring.oxm.version>5.0.3.RELEASE</spring.oxm.version>
+        <spring.boot.version>2.0.6.RELEASE</spring.boot.version>
+        <spring.data.version>2.0.6.RELEASE</spring.data.version>
+        <spring.oxm.version>5.0.10.RELEASE</spring.oxm.version>
         <mail.version>1.6.0</mail.version>
         <mongodb.driver.version>3.6.2</mongodb.driver.version>
         <jackson-datatype.version>2.9.0</jackson-datatype.version>

@@ -1,7 +1,6 @@
 package w.whateva.service.email.app;
 
-import org.springframework.boot.autoconfigure.web.WebMvcRegistrations;
-import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -13,7 +12,9 @@ public class EmailConfiguration {
 
     @Bean
     public WebMvcRegistrations serviceWebRegistrations() {
-        return new WebMvcRegistrationsAdapter() {
+
+        return new WebMvcRegistrations() {
+
             @Override
             public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
                 return new ServiceFilterRequestMappingHandlerMapping();
