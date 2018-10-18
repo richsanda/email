@@ -1,5 +1,7 @@
 package w.whateva.service.email.api.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import w.whateva.service.email.api.adapter.LocalDateTimeXmlAdapter;
 
@@ -13,17 +15,11 @@ import java.util.Set;
 
 @XmlRootElement(name = "Email")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Getter
+@Setter
 public class DtoEmail {
 
     private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @XmlElement(name = "Sent")
@@ -38,53 +34,4 @@ public class DtoEmail {
     private String subject;
     @XmlElement(name = "Body")
     private String body;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    public LocalDateTime getSent() {
-        return sent;
-    }
-
-    public void setSent(LocalDateTime sent) {
-        this.sent = sent;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public Set<String> getTos() {
-        return tos;
-    }
-
-    public void setTos(Set<String> tos) {
-        this.tos = tos;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 }

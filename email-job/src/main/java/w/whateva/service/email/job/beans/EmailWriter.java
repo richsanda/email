@@ -16,8 +16,7 @@ public class EmailWriter implements ItemWriter<DtoEmail> {
         this.emailOperations = emailOperations;
     }
 
-    public void write(List<? extends DtoEmail> apiEmails) throws Exception {
-        for (DtoEmail apiEmail : apiEmails)
-        emailOperations.addEmail(apiEmail);
+    public void write(List<? extends DtoEmail> apiEmails) {
+        apiEmails.forEach(emailOperations::addEmail);
     }
 }
