@@ -42,6 +42,30 @@ public class EmailProcessor implements ItemProcessor<DtoEmail, DtoEmail> {
             dtoEmail.setSubject(dtoEmail.getSubject());
         }
 
+        /*
+        if (!StringUtils.isEmpty(dtoEmail.getMessage())) {
+            try {
+                String content = dtoEmail.getMessage();
+                Session s = Session.getInstance(new Properties());
+                InputStream is = new ByteArrayInputStream(content.getBytes());
+                MimeMessage message = new MimeMessage(s, is);
+                Map<String, String> headers = new HashMap<>();
+                message.getAllHeaderLines();
+                for (Enumeration<Header> e = message.getAllHeaders(); e.hasMoreElements();) {
+                    Header h = e.nextElement();
+                    headers.put(h.getName(), h.getValue());
+                }
+                if (!headers.containsKey("Message-ID")) {
+                    System.out.println(String.format("%s has no message id", dtoEmail.getSubject()));
+                } else {
+                    System.out.println(headers.get("Message-ID"));
+                }
+            } catch (MessagingException e) {
+
+            }
+        }
+        */
+
         return dtoEmail;
     }
 

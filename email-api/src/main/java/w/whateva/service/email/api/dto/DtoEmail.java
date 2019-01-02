@@ -34,4 +34,6 @@ public class DtoEmail {
     private String subject;
     @XmlElement(name = "Body")
     private String body;
+    @XmlElement(name = "Message")
+    private String message;
 }
