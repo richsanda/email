@@ -29,7 +29,7 @@
 
         <dependency>
             <groupId>w.whateva</groupId>
-            <artifactId>email-service-api</artifactId>
+            <artifactId>email-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 

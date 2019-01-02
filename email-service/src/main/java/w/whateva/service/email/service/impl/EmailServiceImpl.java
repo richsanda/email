@@ -12,14 +12,13 @@ import w.whateva.service.email.data.domain.Email;
 import w.whateva.service.email.data.domain.EmailCount;
 import w.whateva.service.email.data.repository.EmailRepository;
 import w.whateva.service.email.data.repository.PersonDao;
-import w.whateva.service.email.api.PersonService;
+import w.whateva.service.email.api.PersonOperations;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -30,11 +29,11 @@ import java.util.stream.Collectors;
 public class EmailServiceImpl implements EmailOperations {
 
     private final EmailRepository emailRepository;
-    private final PersonService personService;
+    private final PersonOperations personService;
     private final PersonDao personDao;
 
     @Autowired
-    public EmailServiceImpl(EmailRepository emailRepository, PersonService personService, PersonDao personDao) {
+    public EmailServiceImpl(EmailRepository emailRepository, PersonOperations personService, PersonDao personDao) {
         this.emailRepository = emailRepository;
         this.personService = personService;
         this.personDao = personDao;

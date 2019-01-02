@@ -2,17 +2,17 @@ package w.whateva.service.email.job.beans;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import w.whateva.service.email.api.PersonService;
+import w.whateva.service.email.api.PersonOperations;
 import w.whateva.service.email.api.dto.DtoPerson;
 
 import java.util.List;
 
 public class PersonWriter implements ItemWriter<DtoPerson> {
 
-    private final PersonService personService;
+    private final PersonOperations personService;
 
     @Autowired
-    public PersonWriter(PersonService personService) {
+    public PersonWriter(PersonOperations personService) {
         this.personService = personService;
     }
 

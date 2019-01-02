@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 import w.whateva.service.email.api.EmailOperations;
-import w.whateva.service.email.api.PersonService;
+import w.whateva.service.email.api.PersonOperations;
 import w.whateva.service.email.api.dto.DtoEmail;
 import w.whateva.service.email.api.dto.DtoPerson;
 import w.whateva.service.email.job.beans.EmailProcessor;
@@ -27,7 +27,7 @@ import w.whateva.service.email.job.beans.PersonWriter;
 public class MboxEmailBatchConfiguration extends DefaultBatchConfigurer {
 
     private final EmailOperations emailService;
-    private final PersonService personService;
+    private final PersonOperations personService;
 
     @Value("${email.address.parser.type}")
     private String emailAddressParserType;
@@ -36,7 +36,7 @@ public class MboxEmailBatchConfiguration extends DefaultBatchConfigurer {
     private String emailToDefault;
 
     @Autowired
-    public MboxEmailBatchConfiguration(EmailOperations emailService, PersonService personService) {
+    public MboxEmailBatchConfiguration(EmailOperations emailService, PersonOperations personService) {
         this.emailService = emailService;
         this.personService = personService;
     }

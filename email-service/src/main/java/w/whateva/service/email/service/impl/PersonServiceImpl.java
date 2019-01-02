@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 import w.whateva.service.email.api.dto.DtoPerson;
 import w.whateva.service.email.data.domain.Person;
 import w.whateva.service.email.data.repository.PersonRepository;
-import w.whateva.service.email.api.PersonService;
+import w.whateva.service.email.api.PersonOperations;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl implements PersonOperations {
 
     private final PersonRepository personRepository;
 
@@ -19,12 +19,14 @@ public class PersonServiceImpl implements PersonService {
         this.personRepository = personRepository;
     }
 
+    @Override
     public void addPerson(DtoPerson dtoPerson) {
         Person person = new Person();
         BeanUtils.copyProperties(dtoPerson, person);
         personRepository.save(person);
     }
 
+    @Override
     public DtoPerson readPerson(String key) {
         Person person = personRepository.findById(key).orElse(null);
         if (null == person) return null;
