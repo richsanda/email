@@ -17,15 +17,15 @@ public class EmailConfiguration {
 
             @Override
             public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-                return new ServiceFilterRequestMappingHandlerMapping();
+
+                return new RequestMappingHandlerMapping() {
+
+                    @Override
+                    protected boolean isHandler(Class<?> beanType) {
+                        return super.isHandler(beanType) && (AnnotationUtils.findAnnotation(beanType, Service.class) == null);
+                    }
+                };
             }
         };
-    }
-
-    private static class ServiceFilterRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
-        @Override
-        protected boolean isHandler(Class<?> beanType) {
-            return super.isHandler(beanType) && (AnnotationUtils.findAnnotation(beanType, Service.class) == null);
-        }
     }
 }
